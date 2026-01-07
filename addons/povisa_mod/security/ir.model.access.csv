@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_paciente,paciente,model_paciente,base.group_user,1,1,1,1
+access_medico,medico,model_medico,base.group_user,1,1,1,1
+access_cita,cita,model_cita,base.group_user,1,1,1,1

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_paciente_form" model="ir.ui.view">
+        <field name="name">paciente.form</field>
+        <field name="model">paciente</field>
+        <field name="arch" type="xml">
+            <form string="ficha del paciente">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="nombre"/>
+                            <field name="apellidos"/>
+                            <field name="nombre_completo" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="contador_visitas" readonly="1"/>
+                            <field name="sintomas" placeholder="describa los sintomas..."/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="historial de visitas">
+                            <field name="citas_ids">
+                                <list editable="bottom">
+                                    <field name="fecha_cita"/>
+                                    <field name="medico_id"/>
+                                    <field name="diagnostico"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_paciente_list" model="ir.ui.view">
+        <field name="name">paciente.list</field>
+        <field name="model">paciente</field>
+        <field name="arch" type="xml">
+            <list string="lista de pacientes">
+                <field name="nombre_completo"/>
+                <field name="contador_visitas" string="visitas"/>
+                <field name="sintomas" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_pacientes" model="ir.actions.act_window">
+        <field name="name">pacientes</field>
+        <field name="res_model">paciente</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_medicos" model="ir.actions.act_window">
+        <field name="name">medicos</field>
+        <field name="res_model">medico</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_citas" model="ir.actions.act_window">
+        <field name="name">citas</field>
+        <field name="res_model">cita</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_hospital_root" name="hospital povisa" sequence="10"/>
+    <menuitem id="menu_paciente" name="pacientes" parent="menu_hospital_root" action="action_pacientes"/>
+    <menuitem id="menu_medico" name="medicos" parent="menu_hospital_root" action="action_medicos"/>
+    <menuitem id="menu_cita" name="citas" parent="menu_hospital_root" action="action_citas"/>
+</odoo>
